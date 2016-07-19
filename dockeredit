@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+CONTAINER=$1
+FILEPATH=$2
+FILENAME=`echo "$FILEPATH" | rev | cut -d"/" -f1 | rev`
+TMPDIR=/tmp/m_docker_$(date +%s)/
+
+mkdir $TMPDIR
+cd $TMPDIR
+docker cp $CONTAINER:$FILEPATH .
+vi $FILENAME
+docker cp $FILENAME $CONTAINER:$FILEPATH
+rm -rf $TMPDIR
+
+echo 'END'
+exit 1;
