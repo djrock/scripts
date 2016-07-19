@@ -1,4 +1,7 @@
 #!/bin/sh
+# Simple script for editing a file in docker
+# Usage: dockeredit CONTAINERNAME FULLFILEPATHANDNAME
+
 set -e
 
 CONTAINER=$1
